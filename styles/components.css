@@ -1,0 +1,14 @@
+/* styles/components.css */
+@layer components {
+  .btn-primary {
+    @apply bg-accent-green text-primary-dark px-6 py-3 rounded-lg font-semibold hover:bg-accent-green/90 transition-colors duration-300;
+  }
+  
+  .btn-secondary {
+    @apply border border-accent-green text-accent-green px-6 py-3 rounded-lg font-semibold hover:bg-accent-green/10 transition-colors duration-300;
+  }
+  
+  .card {
+    @apply bg-gray-800 rounded-xl p-6 hover:shadow-lg hover:shadow-accent-green/20 transition-all duration-300;
+  }
+}
