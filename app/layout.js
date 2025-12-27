@@ -13,14 +13,14 @@ export const metadata = {
     default: 'Code-Z | Full Stack Web Development Agency | Vadodara',
     template: '%s | Code-Z Web Development'
   },
-  
+
   // Optimized description (155-160 characters)
   description: 'Professional full-stack web development services in Vadodara. We build fast, scalable web applications with React, Next.js, Node.js. Transform ideas into digital reality.',
-  
+
   // Keywords (focus on your location + services)
   keywords: [
     'web development company vadodara',
-    'full stack developer vadodara', 
+    'full stack developer vadodara',
     'website development vadodara',
     'React development company',
     'Next.js developers',
@@ -29,7 +29,7 @@ export const metadata = {
     'UI/UX design vadodara',
     'custom website development'
   ],
-  
+
   // OPEN GRAPH for social media
   openGraph: {
     title: 'Code-Z | Professional Web Development Agency | Vadodara',
@@ -47,7 +47,7 @@ export const metadata = {
       },
     ],
   },
-  
+
   // TWITTER CARD
   twitter: {
     card: 'summary_large_image',
@@ -56,7 +56,7 @@ export const metadata = {
     images: ['https://code-z.shop/og-image.png'],
     creator: '@codezdev',
   },
-  
+
   // ROBOTS.TXT equivalent
   robots: {
     index: true,
@@ -69,17 +69,19 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  
+
   // ADD LATER: Google Search Console verification
-  // verification: {
-  //   google: 'google-site-verification=YOUR_CODE_HERE',
-  // },
-  
+
+  // Update this line:
+  verification: {
+    google: 'google-site-verification=QXGYuQPMEDnqb8Iv2o1YaXSARBocvLXaPjVK0pRCDmg',
+  },
+
   // Canonical URL
   alternates: {
     canonical: 'https://code-z.shop',
   },
-  
+
   // Viewport for mobile optimization
   viewport: {
     width: 'device-width',
@@ -95,7 +97,7 @@ export default function RootLayout({ children }) {
         {/* FAVICON */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        
+
         {/* STRUCTURED DATA for Local Business (Vadodara) */}
         <script
           type="application/ld+json"
@@ -154,7 +156,7 @@ export default function RootLayout({ children }) {
             })
           }}
         />
-        
+
         {/* ADDITIONAL Structured Data for WebSite */}
         <script
           type="application/ld+json"
@@ -176,9 +178,13 @@ export default function RootLayout({ children }) {
             })
           }}
         />
-        
+
         {/* ADD LATER: Google Analytics */}
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script> */}
+
+        {/* Google verification meta tag */}
+        <meta name="google-site-verification" content="QXGYuQPMEDnqb8Iv2o1YaXSARBocvLXaPjVK0pRCDmg" />
+
       </head>
       <body className={`${inter.className} bg-primary-dark text-white min-h-screen`}>
         <Navbar />
