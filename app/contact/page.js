@@ -121,7 +121,7 @@ export default function Contact() {
       icon: MapPin,
       title: 'Visit Us',
       detail: 'Vadodara, Gujarat - 391760',
-      href: '#'
+      href: 'https://maps.app.goo.gl/F4djs5aFReeVJDyy8'
     },
     {
       icon: MessageCircle,
