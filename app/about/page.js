@@ -33,9 +33,9 @@ export default function About() {
   ]
 
   const teamStats = [
-    { number: '50+', label: 'Projects Completed' },
-    { number: '25+', label: 'Happy Clients' },
-    { number: '3+', label: 'Years Experience' },
+    { number: '10+', label: 'Projects Completed' },
+    { number: '10+', label: 'Happy Clients' },
+    { number: '1+', label: 'Years Experience' },
     { number: '99%', label: 'Client Satisfaction' }
   ]
 
@@ -71,7 +71,7 @@ export default function About() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-300">
                 <p>
-                  Founded in 2020, Code-Z started as a small team of passionate developers 
+                  Founded in 2025, Code-Z started as a small team of passionate developers 
                   with a shared vision: to create exceptional digital experiences that make 
                   a real impact.
                 </p>
