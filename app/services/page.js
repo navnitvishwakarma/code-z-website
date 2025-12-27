@@ -46,7 +46,7 @@ export default function Services() {
   const pricingTiers = [
     {
       name: 'Starter',
-      price: '$2,499',
+      price: '$499',
       description: 'Perfect for small businesses and startups',
       features: [
         'Up to 5 pages',
@@ -60,7 +60,7 @@ export default function Services() {
     },
     {
       name: 'Professional',
-      price: '$4,999',
+      price: '$999',
       description: 'Ideal for growing businesses',
       features: [
         'Up to 15 pages',
@@ -75,7 +75,7 @@ export default function Services() {
     },
     {
       name: 'Enterprise',
-      price: '$9,999+',
+      price: '$1,999+',
       description: 'For large-scale applications',
       features: [
         'Unlimited Pages',
@@ -146,7 +146,12 @@ export default function Services() {
         </div>
       </section>
 
+
+       
+
       {/* Pricing */}
+
+      
       <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -210,7 +215,9 @@ export default function Services() {
             ))}
           </div>
         </div>
-      </section>
+      </section> 
+
+      
     </div>
   )
 }
