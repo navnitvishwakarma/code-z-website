@@ -1,8 +1,23 @@
+
+
+
+
+
+
+
 // app/portfolio/page.js
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, Filter } from 'lucide-react'
+
+
+
+
+
+
+
+
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('all')

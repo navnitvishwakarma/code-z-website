@@ -1,8 +1,19 @@
+
+
+
+
+
 // app/page.js
 'use client'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Code, Palette, Server, Cloud } from 'lucide-react'
+
+
+
+
+
+
 
 export default function Home() {
   const services = [

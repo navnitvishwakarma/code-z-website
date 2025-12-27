@@ -1,8 +1,32 @@
+
+
+
+
+
+
+
+
+
+
+
+
 // app/contact/page.js
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, MessageCircle, Send, CheckCircle } from 'lucide-react'
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({

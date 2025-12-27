@@ -1,8 +1,22 @@
+
+
+
+
+
+
 // app/about/page.js
 'use client'
 import { motion } from 'framer-motion'
 import { Target, Users, Zap, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+
+
+
+
+
+
+
+
 
 export default function About() {
   const processSteps = [
