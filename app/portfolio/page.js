@@ -1,92 +1,52 @@
-
-
-
-
-
-
-
 // app/portfolio/page.js
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, Filter } from 'lucide-react'
-
-
-
-
-
-
-
-
+import { featuredProjects } from '@/data/featuredProjects'
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('all')
 
-  const projects = [
-    {
-      id: 1,
-      title: 'EduLearn',
-      description: 'A gamified learning platform with interactive courses, progress tracking, and achievement systems.',
-      image: '/api/placeholder/600/400',
-      category: 'full-stack',
-      tech: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-      liveUrl: 'https://edulearn.demo',
-      githubUrl: 'https://github.com/codez/edulearn',
-      featured: true
-    },
-    {
-      id: 2,
-      title: 'Taskify',
-      description: 'Team collaboration and task management application with real-time updates and project tracking.',
-      image: '/api/placeholder/600/400',
-      category: 'full-stack',
-      tech: ['Next.js', 'Firebase', 'Tailwind CSS'],
-      liveUrl: 'https://taskify.demo',
-      githubUrl: 'https://github.com/codez/taskify',
-      featured: true
-    },
-    {
-      id: 3,
-      title: 'Shoply',
-      description: 'Modern e-commerce platform with secure payments, inventory management, and analytics dashboard.',
-      image: '/api/placeholder/600/400',
-      category: 'full-stack',
-      tech: ['React', 'Express', 'Stripe', 'PostgreSQL'],
-      liveUrl: 'https://shoply.demo',
-      githubUrl: 'https://github.com/codez/shoply',
-      featured: true
-    },
+  // Combine featuredProjects with additional projects if needed
+  const allProjects = [
+    ...featuredProjects, // These are your 3 featured projects
+    // Add more projects here if you have them
     {
       id: 4,
       title: 'Blogverse',
       description: 'Content management system for bloggers with markdown support and social features.',
-      image: '/api/placeholder/600/400',
+      shortDescription: 'CMS for bloggers with markdown support',
+      image: '/projects/blogverse.png',
       category: 'full-stack',
       tech: ['Next.js', 'Sanity CMS', 'Vercel'],
-      liveUrl: 'https://blogverse.demo',
-      githubUrl: 'https://github.com/codez/blogverse',
+      liveUrl: 'https://blogverse-demo.vercel.app',
+      githubUrl: 'https://github.com/yourusername/blogverse',
       featured: false
     },
+
     {
       id: 5,
       title: 'Finance Dashboard',
       description: 'Real-time financial data visualization and analytics dashboard for investment tracking.',
-      image: '/api/placeholder/600/400',
+      shortDescription: 'Financial data visualization dashboard',
+      image: '/projects/finance.png',
       category: 'frontend',
       tech: ['React', 'D3.js', 'Chart.js', 'TypeScript'],
-      liveUrl: 'https://finance-demo.com',
-      githubUrl: 'https://github.com/codez/finance-dash',
+      liveUrl: 'https://finance-demo.vercel.app',
+      githubUrl: 'https://github.com/yourusername/finance-dash',
       featured: false
     },
     {
       id: 6,
       title: 'HealthTrack API',
       description: 'RESTful API for health and fitness applications with user management and data analytics.',
-      image: '/api/placeholder/600/400',
+      shortDescription: 'Health and fitness REST API',
+      image: '/projects/api.png',
       category: 'backend',
       tech: ['Node.js', 'Express', 'MongoDB', 'JWT'],
       liveUrl: null,
-      githubUrl: 'https://github.com/codez/healthtrack-api',
+      githubUrl: 'https://github.com/yourusername/healthtrack-api',
       featured: false
     }
   ]
@@ -99,8 +59,8 @@ export default function Portfolio() {
   ]
 
   const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter)
+    ? allProjects 
+    : allProjects.filter(project => project.category === activeFilter)
 
   return (
     <div className="pt-20 min-h-screen">
@@ -162,14 +122,30 @@ export default function Portfolio() {
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
+                  id={`project-${project.id}`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                   className="bg-gray-800 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-accent-green/20 transition-all duration-300"
                 >
-                  <div className="h-48 bg-gradient-to-br from-accent-green to-accent-blue opacity-80 relative">
-                    {project.featured && (
+                  {/* Project Image with Gradient Fallback */}
+                  <div className="h-48 relative overflow-hidden bg-gradient-to-br from-accent-green/20 to-accent-blue/20">
+                    {project.image && project.image !== '/api/placeholder/600/400' ? (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-4xl font-bold text-white/30">
+                          {project.title.charAt(0)}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-accent-green to-accent-blue opacity-80 flex items-center justify-center">
+                        <span className="text-4xl font-bold text-white">
+                          {project.title.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {project.featured !== false && (
                       <div className="absolute top-4 left-4 bg-accent-green text-primary-dark px-3 py-1 rounded-full text-sm font-semibold">
                         Featured
                       </div>
@@ -177,11 +153,15 @@ export default function Portfolio() {
                   </div>
                   
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-gray-400 mb-4">{project.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 hover:text-accent-green transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-400 mb-4">
+                      {project.shortDescription || project.description}
+                    </p>
                     
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tech.map((tech) => (
+                      {project.tech.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
                           className="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm"
@@ -189,31 +169,42 @@ export default function Portfolio() {
                           {tech}
                         </span>
                       ))}
+                      {project.tech.length > 3 && (
+                        <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                          +{project.tech.length - 3}
+                        </span>
+                      )}
                     </div>
                     
-                    <div className="flex space-x-4">
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-2 text-accent-green hover:text-accent-green/80 transition-colors duration-300"
-                        >
-                          <ExternalLink size={16} />
-                          <span>Live Demo</span>
-                        </a>
-                      )}
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300"
-                        >
-                          <Github size={16} />
-                          <span>GitHub</span>
-                        </a>
-                      )}
+                    <div className="flex justify-between items-center pt-4 border-t border-gray-700">
+                      <div className="flex space-x-4">
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center space-x-2 text-accent-green hover:text-accent-green/80 transition-colors duration-300 text-sm"
+                          >
+                            <ExternalLink size={14} />
+                            <span>Live Demo</span>
+                          </a>
+                        )}
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                          >
+                            <Github size={14} />
+                            <span>GitHub</span>
+                          </a>
+                        )}
+                      </div>
+                      
+                      <span className="text-xs text-gray-500 capitalize">
+                        {project.category}
+                      </span>
                     </div>
                   </div>
                 </motion.div>

@@ -1,19 +1,10 @@
-
-
-
-
-
-// app/page.js
+// app/page.js - COMPLETE FIXED VERSION
 'use client'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Code, Palette, Server, Cloud } from 'lucide-react'
-
-
-
-
-
-
+import Image from 'next/image'
+import { ArrowRight, Code, Palette, Server, Cloud, ExternalLink, Github } from 'lucide-react'
+import { featuredProjects } from '@/data/featuredProjects'
 
 export default function Home() {
   const services = [
@@ -46,27 +37,6 @@ export default function Home() {
     { name: 'Firebase', icon: '🔥' },
     { name: 'MongoDB', icon: '🍃' },
     { name: 'Tailwind', icon: '💨' }
-  ]
-
-  const featuredProjects = [
-    {
-      title: 'EduLearn',
-      description: 'Gamified learning platform with interactive courses',
-      tech: ['React', 'Node.js', 'MongoDB'],
-      image: '/api/placeholder/400/250'
-    },
-    {
-      title: 'Taskify',
-      description: 'Team collaboration and task management app',
-      tech: ['Next.js', 'Firebase', 'Tailwind'],
-      image: '/api/placeholder/400/250'
-    },
-    {
-      title: 'Shoply',
-      description: 'Modern e-commerce platform with secure payments',
-      tech: ['React', 'Express', 'Stripe'],
-      image: '/api/placeholder/400/250'
-    }
   ]
 
   return (
@@ -184,7 +154,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
+      {/* Featured Projects - FIXED IMAGES */}
       <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -200,19 +170,35 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProjects.map((project, index) => (
               <motion.div
-                key={project.title}
+                key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                whileHover={{ y: -5 }}
-                className="bg-gray-800 rounded-xl overflow-hidden hover:shadow-lg hover:shadow-accent-green/20 transition-all duration-300"
+                whileHover={{ y: -10 }}
+                className="bg-gray-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-accent-green/20 transition-all duration-300 group"
               >
-                <div className="h-48 bg-gradient-to-br from-accent-green to-accent-blue opacity-80"></div>
+                {/* Project Image - FIXED */}
+                <div className="h-48 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent-green to-accent-blue opacity-80 flex items-center justify-center">
+                    <span className="text-5xl font-bold text-white">
+                      {project.title.charAt(0)}
+                    </span>
+                  </div>
+                  
+                  {/* Featured badge */}
+                  <div className="absolute top-4 left-4 bg-accent-green text-primary-dark px-3 py-1 rounded-full text-sm font-semibold">
+                    Featured
+                  </div>
+                </div>
+                
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-accent-green transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 mb-4">{project.shortDescription}</p>
+                  
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
+                    {project.tech.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
                         className="px-3 py-1 bg-accent-green/20 text-accent-green rounded-full text-sm"
@@ -220,14 +206,43 @@ export default function Home() {
                         {tech}
                       </span>
                     ))}
+                    {project.tech.length > 3 && (
+                      <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                        +{project.tech.length - 3}
+                      </span>
+                    )}
                   </div>
-                  <Link
-                    href="/portfolio"
-                    className="text-accent-green hover:text-accent-green/80 transition-colors duration-300 font-medium flex items-center space-x-1"
-                  >
-                    <span>View Project</span>
-                    <ArrowRight size={16} />
-                  </Link>
+                  
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-700">
+                    <div className="flex space-x-4">
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-1 text-accent-green hover:text-accent-green/80 transition-colors text-sm"
+                        >
+                          <ExternalLink size={14} />
+                          <span>Live Demo</span>
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-1 text-gray-400 hover:text-white transition-colors text-sm"
+                        >
+                          <Github size={14} />
+                          <span>Code</span>
+                        </a>
+                      )}
+                    </div>
+                    
+                    <span className="text-xs text-gray-500 capitalize">
+                      {project.category}
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             ))}

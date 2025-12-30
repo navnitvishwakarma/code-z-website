@@ -1,4 +1,4 @@
-// app/layout.js - UPDATED FOR code-z.shop
+// app/layout.js - FIXED JavaScript version
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '../components/Navbar'
@@ -8,6 +8,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 // SEO OPTIMIZED METADATA FOR code-z.shop
 export const metadata = {
+  metadataBase: new URL('https://code-z.shop'), // ADD THIS LINE
+
   // Dynamic titles
   title: {
     default: 'Code-Z | Full Stack Web Development Agency | Vadodara',
@@ -40,7 +42,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://code-z.shop/og-image.png',
+        url: '/og-image.png', // Use relative path since metadataBase is set
         width: 1200,
         height: 630,
         alt: 'Code-Z Web Development Agency',
@@ -53,7 +55,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Code-Z | Web Development Agency',
     description: 'Professional full-stack web development services in Vadodara.',
-    images: ['https://code-z.shop/og-image.png'],
+    images: ['/og-image.png'], // Use relative path since metadataBase is set
     creator: '@codezdev',
   },
 
@@ -70,24 +72,22 @@ export const metadata = {
     },
   },
 
-  // ADD LATER: Google Search Console verification
-
-  // Update this line:
+  // Google Search Console verification
   verification: {
-    google: 'google-site-verification=QXGYuQPMEDnqb8Iv2o1YaXSARBocvLXaPjVK0pRCDmg',
+    google: 'QXGYuQPMEDnqb8Iv2o1YaXSARBocvLXaPjVK0pRCDmg',
   },
 
   // Canonical URL
   alternates: {
     canonical: 'https://code-z.shop',
   },
+}
 
-  // Viewport for mobile optimization
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+// ADD THIS SEPARATE VIEWPORT EXPORT
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function RootLayout({ children }) {
@@ -184,6 +184,26 @@ export default function RootLayout({ children }) {
 
         {/* Google verification meta tag */}
         <meta name="google-site-verification" content="QXGYuQPMEDnqb8Iv2o1YaXSARBocvLXaPjVK0pRCDmg" />
+
+
+
+        {/* Basic favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+
+        {/* Modern favicons */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+        {/* Apple Touch Icon */}
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        {/* Android */}
+        <link rel="manifest" href="/site.webmanifest" />
+
+        {/* Rest of your head content... */}
+
+
+
 
       </head>
       <body className={`${inter.className} bg-primary-dark text-white min-h-screen`}>
