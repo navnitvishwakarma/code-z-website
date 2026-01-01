@@ -150,11 +150,11 @@ export default function Services() {
       </section>
 
 
-       
+
 
       {/* Pricing */}
 
-      
+
       <section className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -173,11 +173,10 @@ export default function Services() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className={`relative rounded-2xl p-8 ${
-                  tier.popular 
-                    ? 'bg-gradient-to-br from-accent-green to-accent-blue text-primary-dark' 
+                className={`relative rounded-2xl p-8 ${tier.popular
+                    ? 'bg-gradient-to-br from-accent-green to-accent-blue text-primary-dark'
                     : 'bg-gray-800 text-white'
-                }`}
+                  }`}
               >
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -186,7 +185,7 @@ export default function Services() {
                     </span>
                   </div>
                 )}
-                
+
                 <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
                 <div className="mb-4">
                   <span className="text-4xl font-bold">{tier.price}</span>
@@ -195,7 +194,7 @@ export default function Services() {
                 <p className={`mb-6 ${tier.popular ? 'text-primary-dark/80' : 'text-gray-400'}`}>
                   {tier.description}
                 </p>
-                
+
                 <ul className="space-y-3 mb-8">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-center space-x-3">
@@ -204,23 +203,24 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                
+
                 <button
-                  className={`w-full py-3 rounded-lg font-semibold transition-colors duration-300 ${
-                    tier.popular
+                  className={`w-full py-3 rounded-lg font-semibold transition-colors duration-300 ${tier.popular
                       ? 'bg-primary-dark text-accent-green hover:bg-gray-900'
                       : 'bg-accent-green text-primary-dark hover:bg-accent-green/90'
-                  }`}
+                    }`}
+                  onClick={() => window.location.href = "/contact"} // redirect
                 >
                   Get Started
                 </button>
+
               </motion.div>
             ))}
           </div>
         </div>
-      </section> 
+      </section>
 
-      
+
     </div>
   )
 }
